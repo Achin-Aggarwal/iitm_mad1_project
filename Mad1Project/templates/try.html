@@ -1,0 +1,71 @@
+<!-- {% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="display-1">Issue History</h1>
+
+<hr>
+
+{% if confirmations|length > 0 %}
+    {% for confirm in confirmations %}
+        <div class="heading">
+            <h2 class="text-muted">Book Issues #{{ confirm.id }}</h2>
+        </div>
+        <div class="orders">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Book Name</th>
+                        <th style="width: 50%;">Author Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for issue in confirm.issued %}
+                        <tr>
+                            <td>{{ issue.book.name }}</td>
+                            <td>{{ issue.book.author }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+    <button class="btn btn-primary" onclick="window.print();">
+        <i class="fas fa-download"></i>
+        Download
+    </button>
+{% else %}
+    <div class="alert alert-info">
+        <h2>No Orders</h2>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+{% block style %}
+
+<style>
+    .heading {
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+</style>
+
+{% endblock %} -->

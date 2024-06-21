@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="display-1">Request</h1>
+<hr>
+
+{% if requests|length > 0 %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+        <tr>
+            <td>{{request.book.name}}</td>
+            <td>{{request.book.author}}</td>
+            <td>
+                <form action="{{url_for('delete_request', id=request.id)}}" method="post">
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                        Remove
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            
+            <td>
+                <form action="{{url_for('issue')}}" method="post">
+                    <button class="btn btn-success">
+                        Issue
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+    <div class="alert alert-info">
+        <h2>There is no request for any of the book.</h2>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}

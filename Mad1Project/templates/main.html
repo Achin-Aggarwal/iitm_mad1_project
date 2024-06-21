@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block content %}
+{% include 'search.html'   %}
+<hr>
+<br>
+<div class="all_books">
+    {% for section in sections %}
+        <h2>{{ section.name}}</h2>
+        <div class="books">
+            {% for book in section.books %}
+            {% if (param == 'book_name' and book_name.lower() in book.name.lower()) or (param == 'author' and book.author == authot) or (not param) %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.name}}</h5>
+                    <p class="card-text">{{book.content}}</p>
+                    <strong class="author">Author : </strong>{{book.author}}
+                    <br>
+                    <br>
+                    <center>
+                        <div class="issue">
+                            <form action="{{url_for('add_to_request', book_id=book.id)}}" method="POST" class="form">
+                                <input type="submit" value="ISSUE" class="btn btn-outline-primary">
+                            </form>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            {% endif %}   
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block style %}
+<style>
+    .all_books {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .books {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .card {
+        margin: 10px;
+        width: 250px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .card-text {
+        font-size: 0.9em;
+        color: #555;
+    }
+    .author {
+        font-weight: bold;
+        color: #333;
+    }
+    .issue {
+        margin-top: 10px;
+    }
+    .btn {
+        padding: 8px 16px;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+{% endblock %}

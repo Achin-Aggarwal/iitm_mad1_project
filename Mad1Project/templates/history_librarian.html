@@ -1,0 +1,47 @@
+
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="display-1">Issue History</h1>
+
+<hr>
+
+<form action="{{ url_for('revoke_access') }}" method="post">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Author Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if confirmations|length > 0 %}
+                {% for confirm in confirmations %}
+                    {% for issue in confirm.issued %}
+                        <tr>
+                            <td>{{ issue.book.name }}</td>
+                            <td>{{ issue.book.author }}</td>
+                            <td>
+                                <input type="checkbox" name="book_ids" value="{{ issue.book.id }}">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">No issued books</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    {% if confirmations|length > 0 %}
+        <button type="submit" class="btn btn-danger">Revoke Access</button>
+    {% endif %}
+</form>
+
+{% endblock %}

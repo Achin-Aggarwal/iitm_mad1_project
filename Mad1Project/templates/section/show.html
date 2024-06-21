@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Librarian's Dashboard
+    
+{% endblock %}
+
+{% block content %}
+<h1 class="display-1">Books in Section {{section.name}}</h1>
+<a href="{{url_for('add_book', section_id=section.id)}}" class="btn btn-success">
+    <i class="fas fa-plus"></i>
+    ADD
+</a>
+
+<br>
+<br>
+<br>
+
+<h2>Books :-</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Book Author</th>
+            <th>Book Content</th>
+            <th>Book Issue_Date</th>
+            <th>Book Return_Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in section.books %}
+        <tr>
+            <td>{{book.id}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.content}}</td>
+            <td>{{book.issue_date}}</td>
+            <td>{{book.return_date}}</td>
+            <td>
+                
+                <a href="{{url_for('edit_book' , id=book.id)}}" class="btn btn-primary">
+                    <i class="fas fa-edit" ></i>
+                    Edit
+                </a>
+                <a href="{{url_for('delete_book' , id=book.id)}}" class="btn btn-danger">
+                    <i class="fas fa-trash" ></i>
+                    Delete
+                </a>
+                
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

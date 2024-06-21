@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Student Login Page
+{% endblock %}
+
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">LMS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('student_login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('student_register') }}">Register</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          User's Dashboard
+        </span>
+      </div>
+    </div>
+  </nav>
+    
+{% endblock %}
+{% block content %}
+<h1 class=""display-1>Login</h1>
+    <form action="" class="form" method ="post">
+        <div class="form-group">
+          <label for="roll_no" class = "form-label">Roll No.</label>
+          <input type="text" name="roll_no" required class = "form-control">
+        </div>
+        <div class="form-group">
+            <label for="username" class = "form-label">Username</label>
+            <input type="text" name="username" required class = "form-control">
+        </div>
+        <div class="form-group">
+            <label for="password" class = "form-label">Password</label>
+            <input type="password" name="password"required class = "form-control">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>   
+    
+{% endblock %}
